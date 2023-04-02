@@ -2,14 +2,15 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h1>{{ count }}</h1>
+    <button @click="increment">Increment count</button><br /><br />
     <button @click="decrement">Decrease count</button>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
-import { mapMutations, useStore } from "vuex";
-import store from "@/store";
+import { defineComponent } from "vue";
+import { useCounterStore } from "@/store";
+import { storeToRefs } from "pinia";
 
 export default defineComponent({
   name: "HelloWorld",
@@ -17,18 +18,25 @@ export default defineComponent({
     msg: String,
   },
   setup() {
-    const store = useStore();
-    const count = computed(() => store.state.count);
+    const store = useCounterStore();
+    const { count, randomCount } = storeToRefs(store);
+    const { increment, decrement } = store;
     return {
       count,
+      randomCount,
+      increment,
+      decrement,
     };
   },
-  methods: {
+  mounted() {
+    this.count = 10;
+  },
+  /*  methods: {
     ...mapMutations(["decrement"]),
     decrement() {
       store.commit("decrement");
     },
-  },
+  },*/
 });
 </script>
 
