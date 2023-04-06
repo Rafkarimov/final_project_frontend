@@ -5,7 +5,9 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/medspecializations">MedSpecialization</router-link> |
     <router-link to="/persons">Person</router-link> |
-    <router-link to="/doctors">Doctor</router-link>
+    <router-link to="/doctors">Doctor</router-link> |
+    <router-link to="/chiefdoctors">ChiefDoctor</router-link> |
+    <router-link to="/visitors">Visitor</router-link>
   </nav>
   <router-view />
 </template>

@@ -1,15 +1,15 @@
 <template>
   <h1 class="mb-5">Medspecializations</h1>
-  <button class="btn btn-primary mb-5" @click="fetchData">
-    Show medspecializations
-  </button>
   <div class="container">
+    <button class="btn btn-primary mb-5">Create new</button>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
           <th>Id</th>
           <th>Title</th>
           <th>Description</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +20,12 @@
           <td>{{ medspecialization.id }}</td>
           <td>{{ medspecialization.title }}</td>
           <td>{{ medspecialization.description }}</td>
+          <td>
+            <button class="btn btn-success mb-5">Edit</button>
+          </td>
+          <td>
+            <button class="btn btn-danger mb-5">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -54,7 +60,7 @@ export default defineComponent({
 
     // что-то наподобие конструктора
     onMounted(() => {
-      // fetchData();
+      fetchData();
     });
 
     return {
