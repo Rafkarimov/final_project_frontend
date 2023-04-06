@@ -26,3 +26,13 @@ export interface Person {
 export interface PersonState {
   persons?: Array<Person>;
 }
+
+export interface Doctor {
+  id?: number;
+  person?: Array<Person>;
+  medSpecialization?: Array<MedSpecialization>;
+}
+
+export interface DoctorState {
+  doctors?: Array<Doctor>;
+}

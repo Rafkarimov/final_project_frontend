@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { Person, PersonState } from "@/models/types";
 
-// Хранилище для мед специализаций, для каждого ентити свое
+// Хранилище для списка зарегистрированных пользователей, для каждого ентити свое
 export const usePersonStore = defineStore("person", {
   state: (): PersonState => ({
     persons: undefined,

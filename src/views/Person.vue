@@ -38,20 +38,20 @@ import { defineComponent, onMounted, ref } from "vue";
 import { usePersonStore } from "@/store/person";
 import { getPersons } from "@/api/http";
 
-// компонент для мед специализации
+// компонент для списка зарегистрированных пользователей
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Person",
   setup() {
     const error = ref(false); // описать
     const isLoading = ref(false); //описать
-    const personStore = usePersonStore();
+    const personStore = usePersonStore(); // описать
     const fetchData = async () => {
       error.value = false;
       isLoading.value = true;
       try {
         const persons = await getPersons(); // вызов HTTP API при помощи Axios
-        console.log(persons);
+        console.log(persons); // описать
         personStore.setPersons(persons); // сохранение в хранилище Vue
       } catch {
         error.value = true;
