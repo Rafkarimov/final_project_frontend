@@ -54,3 +54,49 @@ export interface Visitor {
 export interface VisitorState {
   visitors?: Array<Visitor>;
 }
+
+export interface MedTypesOfResearch {
+  id?: number;
+  title?: string;
+  description?: string;
+}
+
+export interface MedTypesOfResearchState {
+  medtypesofresearch1?: Array<MedTypesOfResearch>;
+}
+
+export interface LaboratoryAssistant {
+  id?: number;
+  person?: Array<Person>;
+  // medTypesOfResearchList?: Array<MedTypesOfResearch>;
+}
+
+export interface LaboratoryAssistantState {
+  laboratoryassistants?: Array<LaboratoryAssistant>;
+}
+
+export interface VisitorResearch {
+  id?: number;
+  visitors?: Array<Visitor>;
+  doctor?: Array<Doctor>;
+  laboratoryAssistant?: Array<LaboratoryAssistant>;
+  dateOfReferralForResearch?: Date;
+  dateOfResearch?: Date;
+  medTypesOfResearch?: Array<MedTypesOfResearch>;
+}
+
+export interface VisitorResearchState {
+  visitorsresearch?: Array<VisitorResearch>;
+}
+
+export interface Reception {
+  id?: number;
+  visitors?: Array<Visitor>;
+  doctor?: Array<Doctor>;
+  receptionDateTime?: Date;
+  // receptionStatus?: Array<MedTypesOfResearch>;
+}
+
+export interface ReceptionState {
+  receptions?: Array<Reception>;
+}

@@ -7,7 +7,11 @@
     <router-link to="/persons">Person</router-link> |
     <router-link to="/doctors">Doctor</router-link> |
     <router-link to="/chiefdoctors">ChiefDoctor</router-link> |
-    <router-link to="/visitors">Visitor</router-link>
+    <router-link to="/visitors">Visitor</router-link> |
+    <router-link to="/medtypesofresearch">MedTypesOfResearch</router-link> |
+    <router-link to="/laboratoryassistant">LaboratoryAssistant</router-link> |
+    <router-link to="/visitorresearch">VisitorResearch</router-link> |
+    <router-link to="/reception">Reception</router-link>
   </nav>
   <router-view />
 </template>

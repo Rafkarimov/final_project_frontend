@@ -60,3 +60,8 @@ npm install @popperjs/core
 ```
 rmdir /s <name> - удаление каскадом папку
 ```
+### установка для иконок
+
+```
+npm install bootstrap-icons 
+```

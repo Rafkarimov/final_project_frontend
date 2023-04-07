@@ -1,9 +1,13 @@
 import {
   ChiefDoctor,
   Doctor,
+  LaboratoryAssistant,
   MedSpecialization,
+  MedTypesOfResearch,
   Person,
+  Reception,
   Visitor,
+  VisitorResearch,
 } from "@/models/types";
 import axios from "axios";
 
@@ -36,5 +40,33 @@ export async function getChiefDoctors(): Promise<Array<ChiefDoctor>> {
 export async function getVisitors(): Promise<Array<Visitor>> {
   // Promise (промис) - это объект, представляющий результат успешного или неудачного завершения асинхронной операции
   const { data } = await axios.get("/visitor/get-all"); // Axios - это HTTP-клиент, основанный на Promise для Node.js и браузера.
+  return data;
+}
+
+export async function getMedTypesOfResearch1(): Promise<
+  Array<MedTypesOfResearch>
+> {
+  // Promise (промис) - это объект, представляющий результат успешного или неудачного завершения асинхронной операции
+  const { data } = await axios.get("/medtypesofresearch/get-all"); // Axios - это HTTP-клиент, основанный на Promise для Node.js и браузера.
+  return data;
+}
+
+export async function getLaboratoryAssistants(): Promise<
+  Array<LaboratoryAssistant>
+> {
+  // Promise (промис) - это объект, представляющий результат успешного или неудачного завершения асинхронной операции
+  const { data } = await axios.get("/laboratoryassistant/get-all"); // Axios - это HTTP-клиент, основанный на Promise для Node.js и браузера.
+  return data;
+}
+
+export async function getVisitorsResearch(): Promise<Array<VisitorResearch>> {
+  // Promise (промис) - это объект, представляющий результат успешного или неудачного завершения асинхронной операции
+  const { data } = await axios.get("/visitorresearch/get-all"); // Axios - это HTTP-клиент, основанный на Promise для Node.js и браузера.
+  return data;
+}
+
+export async function getReceptions(): Promise<Array<Reception>> {
+  // Promise (промис) - это объект, представляющий результат успешного или неудачного завершения асинхронной операции
+  const { data } = await axios.get("/reception/get-all"); // Axios - это HTTP-клиент, основанный на Promise для Node.js и браузера.
   return data;
 }
