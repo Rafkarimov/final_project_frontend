@@ -69,3 +69,7 @@ npm install bootstrap-icons
 ```
 npm install moment
 ```
+
+### Useful links
+
+https://getbootstrap.com/docs/5.0/components/card/

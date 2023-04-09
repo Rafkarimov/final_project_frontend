@@ -28,8 +28,8 @@ export interface PersonState {
 
 export interface Doctor {
   id?: number;
-  person?: Array<Person>;
-  medSpecialization?: Array<MedSpecialization>;
+  person?: Person;
+  medSpecialization?: MedSpecialization;
 }
 
 export interface DoctorState {
@@ -38,7 +38,7 @@ export interface DoctorState {
 
 export interface ChiefDoctor {
   id?: number;
-  person?: Array<Person>;
+  person?: Person;
   medSpecialization?: Array<MedSpecialization>;
 }
 
@@ -48,7 +48,7 @@ export interface ChiefDoctorState {
 
 export interface Visitor {
   id?: number;
-  person?: Array<Person>;
+  person?: Person;
 }
 
 export interface VisitorState {
@@ -67,7 +67,7 @@ export interface MedTypesOfResearchState {
 
 export interface LaboratoryAssistant {
   id?: number;
-  person?: Array<Person>;
+  person?: Person;
   medTypesOfResearch?: Array<MedTypesOfResearch>;
 }
 

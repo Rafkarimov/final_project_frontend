@@ -22,10 +22,10 @@
           <td>{{ reception.doctor }}</td>
           <td>{{ formatDateTime(reception.receptionDateTime) }}</td>
           <td>
-            <button class="btn btn-success mb-5">Edit</button>
+            <button class="btn btn-success">Edit</button>
           </td>
           <td>
-            <button class="btn btn-danger mb-5">Delete</button>
+            <button class="btn btn-danger">Delete</button>
           </td>
         </tr>
       </tbody>
