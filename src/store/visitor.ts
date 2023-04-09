@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { Visitor, VisitorState } from "@/models/types";
 
-// Хранилище для докторов, для каждого ентити свое
+// Хранилище для пациентов, для каждого ентити свое
 export const useVisitorStore = defineStore("visitor", {
   state: (): VisitorState => ({
     visitors: undefined,

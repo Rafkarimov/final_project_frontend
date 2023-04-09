@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { Reception, ReceptionState } from "@/models/types";
 
-// Хранилище для мед специализаций, для каждого ентити свое
+// Хранилище для приема, для каждого ентити свое
 export const useReceptionStore = defineStore("reception", {
   state: (): ReceptionState => ({
     receptions: undefined,

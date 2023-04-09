@@ -1,9 +1,7 @@
 <template>
   <h1 class="mb-5">Список пациентов</h1>
-  <button class="btn btn-primary mb-5" @click="fetchData">
-    Показать пациентов
-  </button>
   <div class="container">
+    <button class="btn btn-primary mb-5">Create new</button>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -15,6 +13,12 @@
         <tr v-for="visitor in visitorStore.getVisitors" :key="visitor.id">
           <td>{{ visitor.id }}</td>
           <td>{{ visitor.person }}</td>
+          <td>
+            <button class="btn btn-success mb-5">Edit</button>
+          </td>
+          <td>
+            <button class="btn btn-danger mb-5">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -49,7 +53,7 @@ export default defineComponent({
     };
     // что-то наподобие конструктора
     onMounted(() => {
-      // fetchData();
+      fetchData();
     });
 
     return {

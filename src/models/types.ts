@@ -91,7 +91,7 @@ export interface VisitorResearchState {
 
 export interface Reception {
   id?: number;
-  visitors?: Array<Visitor>;
+  visitor?: Array<Visitor>;
   doctor?: Array<Doctor>;
   receptionDateTime?: Date;
   // receptionStatus?: Array<MedTypesOfResearch>;

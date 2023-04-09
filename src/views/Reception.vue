@@ -45,14 +45,14 @@ export default defineComponent({
   setup() {
     const error = ref(false);
     const isLoading = ref(true);
-    const reseptionsStore = useReceptionStore();
+    const receptionsStore = useReceptionStore();
     const fetchData = async () => {
       error.value = false;
       isLoading.value = true;
       try {
-        const reseptions = await getReceptions(); //вызов HTTP API при помощи Axios
-        console.log(reseptions);
-        reseptionsStore.setReceptions(reseptions); //сохранение в хранилище Vue
+        const receptions = await getReceptions(); //вызов HTTP API при помощи Axios
+        console.log(receptions);
+        receptionsStore.setReceptions(receptions); //сохранение в хранилище Vue
       } catch {
         error.value = true;
       } finally {
@@ -69,7 +69,7 @@ export default defineComponent({
       error,
       isLoading,
       fetchData,
-      reseptionsStore,
+      receptionsStore,
     };
   },
 });

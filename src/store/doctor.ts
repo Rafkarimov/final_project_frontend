@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { Doctor, DoctorState } from "@/models/types";
 
-// Хранилище для докторов, для каждого ентити свое
+// Хранилище для врачей, для каждого ентити свое
 export const useDoctorStore = defineStore("doctor", {
   state: (): DoctorState => ({
     doctors: undefined,
