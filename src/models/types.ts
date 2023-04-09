@@ -77,12 +77,12 @@ export interface LaboratoryAssistantState {
 
 export interface VisitorResearch {
   id?: number;
-  visitors?: Array<Visitor>;
-  doctor?: Array<Doctor>;
-  laboratoryAssistant?: Array<LaboratoryAssistant>;
+  visitor?: Visitor;
+  doctor?: Doctor;
+  laboratoryAssistant?: LaboratoryAssistant;
   dateOfReferralForResearch?: Date;
   dateOfResearch?: Date;
-  medTypesOfResearch?: Array<MedTypesOfResearch>;
+  medTypesOfResearch?: MedTypesOfResearch;
 }
 
 export interface VisitorResearchState {

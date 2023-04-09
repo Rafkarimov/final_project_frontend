@@ -18,7 +18,7 @@
           :key="reception.id"
         >
           <td>{{ reception.id }}</td>
-          <td>{{ reception.visitors }}</td>
+          <td>{{ reception.visitor }}</td>
           <td>{{ reception.doctor }}</td>
           <td>{{ formatDateTime(reception.receptionDateTime) }}</td>
           <td>

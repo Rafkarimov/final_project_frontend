@@ -21,10 +21,7 @@
           <td>{{ medtypesofresearch.title }}</td>
           <td>{{ medtypesofresearch.description }}</td>
           <td>
-            <!--            <button class="btn btn-success mb-5">Edit</button>-->
-            <button class="btn btn-success">
-              <fa-icon icon="pencil-alt"></fa-icon> Edit
-            </button>
+            <button class="btn btn-success mb-5">Edit</button>
           </td>
           <td>
             <button class="btn btn-danger mb-5">Delete</button>

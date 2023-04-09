@@ -65,7 +65,7 @@ rmdir /s <name> - удаление каскадом папку
 ```
 npm install bootstrap-icons 
 ```
-
+### установка для времени
 ```
 npm install moment
 ```

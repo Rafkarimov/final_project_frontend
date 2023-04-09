@@ -20,7 +20,7 @@
           :key="visitorresearch.id"
         >
           <td>{{ visitorresearch.id }}</td>
-          <td>{{ visitorresearch.visitors }}</td>
+          <td>{{ visitorresearch.visitor }}</td>
           <td>{{ visitorresearch.doctor }}</td>
           <td>{{ visitorresearch.laboratoryAssistant }}</td>
           <td>{{ visitorresearch.dateOfReferralForResearch }}</td>
