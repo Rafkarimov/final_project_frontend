@@ -4,14 +4,14 @@ import { VisitorResearch, VisitorResearchState } from "@/models/types";
 // Хранилище для исследований пациентов, для каждого ентити свое
 export const useVisitorResearchStore = defineStore("visitorResearch", {
   state: (): VisitorResearchState => ({
-    visitorsresearch: undefined,
+    visitorsresearches: undefined,
   }),
   getters: {
-    getVisitorsResearch: (state) => state.visitorsresearch || [],
+    getVisitorsResearch: (state) => state.visitorsresearches || [],
   },
   actions: {
     setVisitorsResearch(visitorsResearch: Array<VisitorResearch>) {
-      this.visitorsresearch = visitorsResearch;
+      this.visitorsresearches = visitorsResearch;
     },
   },
 });

@@ -8,6 +8,14 @@ export const useLaboratoryAssistantStore = defineStore("laboratoryAssistant", {
   }),
   getters: {
     getLaboratoryAssistants: (state) => state.laboratoryassistants || [],
+    getMedSpecializationTypes: (state) => (id: number) => {
+      return (
+        state.laboratoryassistants
+          ?.find((x) => x.id === id)
+          ?.medTypesOfResearch?.map((y) => y.title)
+          .toString() || []
+      );
+    },
   },
   actions: {
     setLaboratoryAssistants(laboratoryassistants: Array<LaboratoryAssistant>) {

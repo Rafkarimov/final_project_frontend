@@ -6,8 +6,13 @@
       <thead>
         <tr>
           <th>Id</th>
-          <th>Person</th>
-          <!--          <th>Medtypesofresearch</th>-->
+          <th>Last name</th>
+          <th>First name</th>
+          <th>Middle name</th>
+          <th>Birth date</th>
+          <th>Phone</th>
+          <th>E-mail</th>
+          <th>Med types of research</th>
           <th></th>
           <th></th>
         </tr>
@@ -18,8 +23,13 @@
           :key="laboratoryassistant.id"
         >
           <td>{{ laboratoryassistant.id }}</td>
-          <td>{{ laboratoryassistant.person }}</td>
-          <!--          <td>{{ laboratoryassistant.medTypesOfResearchList }}</td>-->
+          <td>{{ laboratoryassistant.person.lastName }}</td>
+          <td>{{ laboratoryassistant.person.firstName }}</td>
+          <td>{{ laboratoryassistant.person.middleName }}</td>
+          <td>{{ formatDate(laboratoryassistant.person.birthDate) }}</td>
+          <td>{{ laboratoryassistant.person.phone }}</td>
+          <td>{{ laboratoryassistant.person.email }}</td>
+          <td>{{ getMedSpecializationTypes(laboratoryassistant.id) }}</td>
           <td>
             <button class="btn btn-success mb-5">Edit</button>
           </td>
@@ -37,16 +47,21 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { useLaboratoryAssistantStore } from "@/store/laboratoryassistant";
 import { getLaboratoryAssistants } from "@/api/http";
+import { storeToRefs } from "pinia";
+import { formatDate } from "@/utils/util";
 
 export default defineComponent({
   name: "LaboratoryAssistant",
+  // methods: { formatDate },
   setup() {
     const error = ref(false);
-    const isLoadnig = ref(true);
+    const isLoading = ref(true);
     const laboratoryAssistantStore = useLaboratoryAssistantStore();
+    const { getMedSpecializationTypes } = storeToRefs(laboratoryAssistantStore); // объект с ссылками на состояние геттеров итд в хранилище
+
     const fetchData = async () => {
       error.value = false;
-      isLoadnig.value = true;
+      isLoading.value = true;
       try {
         const laboratoryAssistants = await getLaboratoryAssistants(); // вызов HTTP API при помощи Axios
         console.log(laboratoryAssistants);
@@ -54,7 +69,7 @@ export default defineComponent({
       } catch {
         error.value = true;
       } finally {
-        isLoadnig.value = false;
+        isLoading.value = false;
       }
     };
 
@@ -65,9 +80,11 @@ export default defineComponent({
 
     return {
       error,
-      isLoadnig,
+      isLoading,
       fetchData,
       laboratoryAssistantStore,
+      getMedSpecializationTypes,
+      formatDate,
     };
   },
 });

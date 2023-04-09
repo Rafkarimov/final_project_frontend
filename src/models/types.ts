@@ -62,13 +62,13 @@ export interface MedTypesOfResearch {
 }
 
 export interface MedTypesOfResearchState {
-  medtypesofresearch1?: Array<MedTypesOfResearch>;
+  medtypesofresearches?: Array<MedTypesOfResearch>;
 }
 
 export interface LaboratoryAssistant {
   id?: number;
   person?: Array<Person>;
-  // medTypesOfResearchList?: Array<MedTypesOfResearch>;
+  medTypesOfResearch?: Array<MedTypesOfResearch>;
 }
 
 export interface LaboratoryAssistantState {
@@ -86,7 +86,7 @@ export interface VisitorResearch {
 }
 
 export interface VisitorResearchState {
-  visitorsresearch?: Array<VisitorResearch>;
+  visitorsresearches?: Array<VisitorResearch>;
 }
 
 export interface Reception {

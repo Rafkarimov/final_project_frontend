@@ -20,7 +20,7 @@
           <td>{{ reception.id }}</td>
           <td>{{ reception.visitors }}</td>
           <td>{{ reception.doctor }}</td>
-          <td>{{ reception.receptionDateTime }}</td>
+          <td>{{ formatDateTime(reception.receptionDateTime) }}</td>
           <td>
             <button class="btn btn-success mb-5">Edit</button>
           </td>
@@ -37,6 +37,7 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { useReceptionStore } from "@/store/reception";
 import { getReceptions } from "@/api/http";
+import { formatDateTime } from "@/utils/util";
 
 // компонент для приемов
 export default defineComponent({
@@ -70,6 +71,7 @@ export default defineComponent({
       isLoading,
       fetchData,
       receptionsStore,
+      formatDateTime,
     };
   },
 });
