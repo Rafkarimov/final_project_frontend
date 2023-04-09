@@ -91,12 +91,21 @@ export interface VisitorResearchState {
 
 export interface Reception {
   id?: number;
-  visitor?: Array<Visitor>;
-  doctor?: Array<Doctor>;
+  visitor?: Visitor;
+  doctor?: Doctor;
   receptionDateTime?: Date;
-  // receptionStatus?: Array<MedTypesOfResearch>;
+  receptionStatus?: MedTypesOfResearch;
 }
 
 export interface ReceptionState {
   receptions?: Array<Reception>;
+}
+
+export interface ReceptionStatus {
+  id?: number;
+  status?: string;
+}
+
+export interface ReceptionStatusState {
+  receptionsstatus?: Array<ReceptionStatus>;
 }

@@ -1,5 +1,5 @@
 <template>
-  <h1 class="mb-5">Visitor researches</h1>
+  <h1 class="mb-5">Исследование пациентов</h1>
   <div class="container mb-5">
     <!-- Button trigger modal -->
     <button
