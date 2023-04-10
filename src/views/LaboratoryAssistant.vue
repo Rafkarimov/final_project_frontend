@@ -5,14 +5,14 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Last name</th>
-          <th>First name</th>
-          <th>Middle name</th>
-          <th>Birth date</th>
-          <th>Phone</th>
+          <th>№</th>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Отчество</th>
+          <th>День рождение</th>
+          <th>Телефон</th>
           <th>E-mail</th>
-          <th>Med types of research</th>
+          <th>Исследования</th>
           <th></th>
           <th></th>
         </tr>
@@ -30,6 +30,23 @@
           <td>{{ laboratoryassistant.person.phone }}</td>
           <td>{{ laboratoryassistant.person.email }}</td>
           <td>{{ getMedSpecializationTypes(laboratoryassistant.id) }}</td>
+
+          <!--          <p>-->
+          <!--            Вид исследования:-->
+          <!--            <a-->
+          <!--              data-bs-toggle="collapse"-->
+          <!--              :href="`#collapse3-${laboratoryassistant.id}`"-->
+          <!--              aria-expanded="false"-->
+          <!--              :aria-controls="`collapse3-${laboratoryassistant.id}`"-->
+          <!--            >-->
+          <!--              {{ getMedSpecializationTypes(laboratoryassistant.id) }}-->
+          <!--            </a>-->
+          <!--          </p>-->
+          <!--          <div class="collapse" :id="`collapse3-${laboratoryassistant.id}`">-->
+          <!--            <div class="card card-body mb-3">-->
+          <!--              {{ getMedSpecializationTypesDic(laboratoryassistant.id) }}-->
+          <!--            </div>-->
+          <!--          </div>-->
           <td>
             <button class="btn btn-success mb-5">Edit</button>
           </td>
@@ -58,6 +75,9 @@ export default defineComponent({
     const isLoading = ref(true);
     const laboratoryAssistantStore = useLaboratoryAssistantStore();
     const { getMedSpecializationTypes } = storeToRefs(laboratoryAssistantStore); // объект с ссылками на состояние геттеров итд в хранилище
+    const { getMedSpecializationTypesDic } = storeToRefs(
+      laboratoryAssistantStore
+    ); // объект с ссылками на состояние геттеров итд в хранилище
 
     const fetchData = async () => {
       error.value = false;
@@ -85,6 +105,7 @@ export default defineComponent({
       laboratoryAssistantStore,
       getMedSpecializationTypes,
       formatDate,
+      getMedSpecializationTypesDic,
     };
   },
 });

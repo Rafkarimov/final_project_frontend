@@ -3,13 +3,13 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/medspecializations">MedSpecialization</router-link> |
-    <router-link to="/persons">Person</router-link> |
-    <router-link to="/doctors">Doctor</router-link> |
-    <router-link to="/chiefdoctors">ChiefDoctor</router-link> |
-    <router-link to="/visitors">Visitor</router-link> |
-    <router-link to="/medtypesofresearch">MedTypesOfResearch</router-link> |
-    <router-link to="/laboratoryassistant">LaboratoryAssistant</router-link> |
+    <router-link to="/medspecializations">Специализация</router-link> |
+    <router-link to="/persons">Пользователи</router-link> |
+    <router-link to="/doctors">Врачи</router-link> |
+    <router-link to="/chiefdoctors">Главный врач</router-link> |
+    <router-link to="/visitors">Пациенты</router-link> |
+    <router-link to="/medtypesofresearch">Исследования</router-link> |
+    <router-link to="/laboratoryassistant">Лаборанты</router-link> |
     <router-link to="/visitorresearch">Исследования пациентов</router-link> |
     <router-link to="/reception">Приёмы</router-link>
   </nav>

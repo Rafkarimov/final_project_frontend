@@ -5,14 +5,26 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Person</th>
+          <th>№</th>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Отчество</th>
+          <th>День рождение</th>
+          <th>Телефон</th>
+          <th>E-mail</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="visitor in visitorStore.getVisitors" :key="visitor.id">
           <td>{{ visitor.id }}</td>
-          <td>{{ visitor.person }}</td>
+          <td>{{ visitor.person.lastName }}</td>
+          <td>{{ visitor.person.firstName }}</td>
+          <td>{{ visitor.person.middleName }}</td>
+          <td>{{ formatDate(visitor.person.birthDate) }}</td>
+          <td>{{ visitor.person.phone }}</td>
+          <td>{{ visitor.person.email }}</td>
           <td>
             <button class="btn btn-success mb-5">Edit</button>
           </td>
@@ -29,6 +41,7 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { useVisitorStore } from "@/store/visitor";
 import { getVisitors } from "@/api/http";
+import { formatDate } from "@/utils/util";
 
 // компонент для списка пациентов
 export default defineComponent({
@@ -61,6 +74,7 @@ export default defineComponent({
       isLoading,
       fetchData,
       visitorStore,
+      formatDate,
     };
   },
 });

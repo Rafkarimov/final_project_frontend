@@ -29,7 +29,7 @@ export interface PersonState {
 export interface Doctor {
   id?: number;
   person?: Person;
-  medSpecialization?: MedSpecialization;
+  medSpecialization?: Array<MedSpecialization>;
 }
 
 export interface DoctorState {

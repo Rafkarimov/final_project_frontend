@@ -5,9 +5,16 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Person</th>
-          <th>MedSpecialization</th>
+          <th>№</th>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Отчество</th>
+          <th>День рождение</th>
+          <th>Телефон</th>
+          <th>E-mail</th>
+          <th>Специализация</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -16,8 +23,13 @@
           :key="chiefdoctors.id"
         >
           <td>{{ chiefdoctors.id }}</td>
-          <td>{{ chiefdoctors.person }}</td>
-          <td>{{ chiefdoctors.medSpecialization }}</td>
+          <td>{{ chiefdoctors.person.lastName }}</td>
+          <td>{{ chiefdoctors.person.firstName }}</td>
+          <td>{{ chiefdoctors.person.middleName }}</td>
+          <td>{{ formatDate(chiefdoctors.person.birthDate) }}</td>
+          <td>{{ chiefdoctors.person.phone }}</td>
+          <td>{{ chiefdoctors.person.email }}</td>
+          <td>{{ chiefdoctors.medSpecialization.title }}</td>
           <td>
             <button class="btn btn-success mb-5">Edit</button>
           </td>
@@ -34,6 +46,7 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { useChiefDoctorStore } from "@/store/chiefdoctor";
 import { getChiefDoctors } from "@/api/http";
+import { formatDate } from "@/utils/util";
 
 // компонент для списка
 export default defineComponent({
@@ -65,6 +78,7 @@ export default defineComponent({
       isLoading,
       fetchData,
       chiefDoctorStore,
+      formatDate,
     };
   },
 });

@@ -1,12 +1,11 @@
 <template>
-  <h1 class="mb-5">Persons</h1>
+  <h1 class="mb-5">Зарегистрированные пользователи</h1>
   <div class="container">
     <button class="btn btn-primary mb-5">Create new</button>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
           <th>Id</th>
-          <th>Login</th>
           <th>Last name</th>
           <th>First name</th>
           <th>Middle name</th>
@@ -19,7 +18,6 @@
       <tbody>
         <tr v-for="person in personStore.getPersons" :key="person.id">
           <td>{{ person.id }}</td>
-          <td>{{ person.login }}</td>
           <td>{{ person.lastName }}</td>
           <td>{{ person.firstName }}</td>
           <td>{{ person.middleName }}</td>

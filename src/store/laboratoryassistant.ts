@@ -16,6 +16,14 @@ export const useLaboratoryAssistantStore = defineStore("laboratoryAssistant", {
           .toString() || []
       );
     },
+    getMedSpecializationTypesDic: (state) => (id: number) => {
+      return (
+        state.laboratoryassistants
+          ?.find((x) => x.id === id)
+          ?.medTypesOfResearch?.map((y) => y.description)
+          .toString() || []
+      );
+    },
   },
   actions: {
     setLaboratoryAssistants(laboratoryassistants: Array<LaboratoryAssistant>) {
