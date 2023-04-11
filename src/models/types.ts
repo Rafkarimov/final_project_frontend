@@ -83,6 +83,7 @@ export interface VisitorResearch {
   dateOfReferralForResearch?: Date;
   dateOfResearch?: Date;
   medTypesOfResearch?: MedTypesOfResearch;
+  researchStatus?: ResearchStatus;
 }
 
 export interface VisitorResearchState {
@@ -94,7 +95,7 @@ export interface Reception {
   visitor?: Visitor;
   doctor?: Doctor;
   receptionDateTime?: Date;
-  receptionStatus?: MedTypesOfResearch;
+  receptionStatus?: ReceptionStatus;
 }
 
 export interface ReceptionState {
@@ -108,4 +109,13 @@ export interface ReceptionStatus {
 
 export interface ReceptionStatusState {
   receptionsstatus?: Array<ReceptionStatus>;
+}
+
+export interface ResearchStatus {
+  id?: number;
+  status?: string;
+}
+
+export interface ResearchStatusState {
+  researchstatuses?: Array<ResearchStatus>;
 }

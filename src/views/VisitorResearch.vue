@@ -116,6 +116,10 @@
           <b>Дата направления на исследование:</b>
           {{ formatDate(visitorresearch.dateOfReferralForResearch) }}
         </p>
+        <p>
+          <b>Статус исследования:</b>
+          {{ visitorresearch.researchStatus?.status }}
+        </p>
         <hr />
         <button class="btn btn-success">Edit</button>
         <button class="btn btn-danger ms-2">Delete</button>
