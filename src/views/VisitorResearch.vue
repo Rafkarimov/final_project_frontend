@@ -64,6 +64,32 @@
           {{ formatDate(visitorresearch.visitor?.person?.birthDate) }}
         </p>
         <hr />
+        <p class="card-title"><b>Специалист, направивший на исследование</b></p>
+        <p class="card-text">
+          {{ visitorresearch.doctor?.person?.lastName }}
+          {{ visitorresearch.doctor?.person?.firstName }}
+          {{ visitorresearch.doctor?.person?.middleName }}
+        </p>
+        <p>
+          Специализация:
+          <a
+            data-bs-toggle="collapse"
+            :href="`#collapse2-${visitorresearch.id}`"
+            aria-expanded="false"
+            :aria-controls="`collapse2-${visitorresearch.id}`"
+          >
+            {{ visitorresearch.doctor?.medSpecialization?.title }}
+          </a>
+        </p>
+        <div class="collapse" :id="`collapse2-${visitorresearch.id}`">
+          <div class="card card-body mb-3">
+            {{ visitorresearch.doctor?.medSpecialization?.description }}
+          </div>
+        </div>
+        <p>
+          <b>Дата направления на исследование:</b>
+          {{ formatDate(visitorresearch.dateOfReferralForResearch) }}
+        </p>
         <p class="card-title"><b>Лаборант</b></p>
         <p class="card-text">
           {{ visitorresearch.laboratoryAssistant?.person?.lastName }}
@@ -89,32 +115,6 @@
         <p>
           <b>Дата исследования:</b>
           {{ formatDate(visitorresearch.dateOfResearch) }}
-        </p>
-        <p class="card-title"><b>Врач, направивший на исследование</b></p>
-        <p class="card-text">
-          {{ visitorresearch.doctor?.person?.lastName }}
-          {{ visitorresearch.doctor?.person?.firstName }}
-          {{ visitorresearch.doctor?.person?.middleName }}
-        </p>
-        <p>
-          Специализация:
-          <a
-            data-bs-toggle="collapse"
-            :href="`#collapse2-${visitorresearch.id}`"
-            aria-expanded="false"
-            :aria-controls="`collapse2-${visitorresearch.id}`"
-          >
-            {{ visitorresearch.doctor?.medSpecialization?.title }}
-          </a>
-        </p>
-        <div class="collapse" :id="`collapse2-${visitorresearch.id}`">
-          <div class="card card-body mb-3">
-            {{ visitorresearch.doctor?.medSpecialization?.description }}
-          </div>
-        </div>
-        <p>
-          <b>Дата направления на исследование:</b>
-          {{ formatDate(visitorresearch.dateOfReferralForResearch) }}
         </p>
         <p>
           <b>Статус исследования:</b>
