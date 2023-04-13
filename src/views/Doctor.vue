@@ -1,7 +1,45 @@
 <template>
   <h1 class="mb-5">Список врачей</h1>
   <div class="container">
-    <button class="btn btn-primary mb-5">Create new</button>
+    <button class="btn btn-primary mb-5" @click="openModal">Create new</button>
+    <ModalComponent v-model="dialogVisible" title="Modal title">
+      <div class="myform">
+        <h1 class="text-center">Login Form</h1>
+        <form>
+          <div class="mb-3 mt-4">
+            <label for="exampleInputEmail1" class="form-label"
+              >Email address</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <button type="submit" class="btn btn-light mt-3">LOGIN</button>
+          <p>Not a member? <a href="#">Signup now</a></p>
+        </form>
+      </div>
+      <template #footer>
+        <button type="button" class="btn btn-secondary" @click="closeModal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" @click="saveDoctor">
+          Save changes
+        </button>
+      </template>
+    </ModalComponent>
     <table class="table table-striped table-bordered table-sm">
       <thead>
         <tr>
@@ -55,16 +93,33 @@ import { useDoctorStore } from "@/store/doctor";
 import { getDoctors } from "@/api/http";
 import { formatDate } from "@/utils/util";
 import { Popover } from "bootstrap";
+import ModalComponent from "@/components/ModalComponent.vue";
 
 // компонент для списка врачей
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Doctor",
+  components: { ModalComponent },
   setup() {
     const error = ref(false); // описать
     const isLoading = ref(false); // описать
     const doctorStore = useDoctorStore(); // описать
     let info: Popover | undefined = undefined;
+
+    const dialogVisible = ref(false);
+
+    function openModal() {
+      dialogVisible.value = true;
+    }
+
+    function closeModal() {
+      dialogVisible.value = false;
+    }
+
+    function saveDoctor() {
+      // логика сохранения доктора на сервер
+      closeModal();
+    }
 
     const fetchData = async () => {
       error.value = false;
@@ -106,6 +161,10 @@ export default defineComponent({
       formatDate,
       showPopover,
       hidePopover,
+      dialogVisible,
+      openModal,
+      closeModal,
+      saveDoctor,
     };
   },
 });

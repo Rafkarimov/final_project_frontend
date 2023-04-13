@@ -5,7 +5,7 @@ import { createPinia } from "pinia";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
-import { popover, tooltip } from "@/utils/bootstrap";
+import { popover, tooltip } from "@/common/bootstrap";
 
 const pinia = createPinia();
 
