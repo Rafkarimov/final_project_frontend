@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal modal-xl fade"
+    :class="`modal ${modelValue?.size} fade`"
     tabindex="-1"
     ref="modalRef"
     aria-hidden="true"
@@ -15,7 +15,7 @@
             type="button"
             class="btn-close"
             aria-label="Close"
-            @click="close"
+            @click="close()"
           />
         </div>
         <div class="modal-body">
@@ -30,12 +30,26 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted, watch, defineComponent } from "vue";
+import { ref, onMounted, watch, defineComponent, PropType } from "vue";
 import { Modal } from "bootstrap";
+
+export interface ModalProperties {
+  isVisible: boolean;
+  size: string;
+}
 
 export default defineComponent({
   props: {
-    modelValue: Boolean,
+    modelValue: {
+      type: Object as PropType<ModalProperties>,
+      default: () => ({
+        modalProperties: {
+          isVisible: true,
+          size: "",
+        },
+        required: true,
+      }),
+    },
     title: String,
   },
   emits: ["update:modelValue"],
@@ -50,9 +64,11 @@ export default defineComponent({
     });
 
     watch(
-      () => props.modelValue,
-      (modelValue) => {
-        if (modelValue) {
+      () => {
+        return props.modelValue.isVisible;
+      },
+      (value) => {
+        if (value) {
           modal.show();
         } else {
           modal.hide();
@@ -61,7 +77,7 @@ export default defineComponent({
     );
 
     function close() {
-      context.emit("update:modelValue", false);
+      context.emit("update:modelValue", { isVisible: false, size: "modal-lg" });
     }
 
     return {
@@ -71,42 +87,6 @@ export default defineComponent({
     };
   },
 });
-
-// emits: ["update:modelValue"],
-//     setup(props, { emit }) {
-// emit("update:modelValue", false);
-// const props = defineProps<{
-//   modelValue: boolean;
-//   title: string;
-// }>();
-//
-// const emit = defineEmits<{
-//   (e: "update:modelValue", modelValue: boolean): void;
-// }>();
-//
-// const modalRef = ref<HTMLElement | null>(null);
-// let modal: Modal;
-//
-// onMounted(() => {
-//   if (modalRef.value) {
-//     modal = new Modal(modalRef.value);
-//   }
-// });
-//
-// watch(
-//   () => props.modelValue,
-//   (modelValue) => {
-//     if (modelValue) {
-//       modal.show();
-//     } else {
-//       modal.hide();
-//     }
-//   }
-// );
-//
-// function close() {
-//   emit("update:modelValue", false);
-// }
 </script>
 
 <style scoped></style>

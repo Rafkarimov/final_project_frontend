@@ -2,9 +2,8 @@
   <h1 class="mb-5">Список врачей</h1>
   <div class="container">
     <button class="btn btn-primary mb-5" @click="openModal">Create new</button>
-    <ModalComponent v-model="dialogVisible" title="Modal title">
+    <ModalComponent v-model="modalProperties" title="Create doctor">
       <div class="myform">
-        <h1 class="text-center">Login Form</h1>
         <form>
           <div class="mb-3 mt-4">
             <label for="exampleInputEmail1" class="form-label"
@@ -27,8 +26,6 @@
               id="exampleInputPassword1"
             />
           </div>
-          <button type="submit" class="btn btn-light mt-3">LOGIN</button>
-          <p>Not a member? <a href="#">Signup now</a></p>
         </form>
       </div>
       <template #footer>
@@ -97,8 +94,8 @@ import ModalComponent from "@/components/ModalComponent.vue";
 
 // компонент для списка врачей
 export default defineComponent({
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "Doctor",
+  // ToDo переназвать все виды
+  name: "DoctorView",
   components: { ModalComponent },
   setup() {
     const error = ref(false); // описать
@@ -106,17 +103,17 @@ export default defineComponent({
     const doctorStore = useDoctorStore(); // описать
     let info: Popover | undefined = undefined;
 
-    const dialogVisible = ref(false);
+    const modalProperties = ref({ isVisible: false, size: "modal-lg" });
 
     function openModal() {
-      dialogVisible.value = true;
+      modalProperties.value.isVisible = true;
     }
 
     function closeModal() {
-      dialogVisible.value = false;
+      modalProperties.value.isVisible = false;
     }
 
-    function saveDoctor() {
+    async function saveDoctor() {
       // логика сохранения доктора на сервер
       closeModal();
     }
@@ -161,7 +158,7 @@ export default defineComponent({
       formatDate,
       showPopover,
       hidePopover,
-      dialogVisible,
+      modalProperties,
       openModal,
       closeModal,
       saveDoctor,
