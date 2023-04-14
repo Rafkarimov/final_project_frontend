@@ -94,7 +94,6 @@ import { getDoctors } from "@/api/http";
 import { formatDate } from "@/utils/util";
 import { Popover } from "bootstrap";
 import ModalComponent from "@/components/ModalComponent.vue";
-
 // компонент для списка врачей
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
@@ -105,22 +104,17 @@ export default defineComponent({
     const isLoading = ref(false); // описать
     const doctorStore = useDoctorStore(); // описать
     let info: Popover | undefined = undefined;
-
     const dialogVisible = ref(false);
-
     function openModal() {
       dialogVisible.value = true;
     }
-
     function closeModal() {
       dialogVisible.value = false;
     }
-
     function saveDoctor() {
       // логика сохранения доктора на сервер
       closeModal();
     }
-
     const fetchData = async () => {
       error.value = false;
       isLoading.value = true;
@@ -134,7 +128,6 @@ export default defineComponent({
         isLoading.value = false;
       }
     };
-
     function showPopover(event: { target: string | Element }, content: string) {
       info = new Popover(event.target, {
         placement: "top",
@@ -143,16 +136,13 @@ export default defineComponent({
       });
       info.show();
     }
-
     function hidePopover() {
       info?.hide();
     }
-
     // что-то наподобие конструктора
     onMounted(() => {
       fetchData();
     });
-
     return {
       error,
       isLoading,
