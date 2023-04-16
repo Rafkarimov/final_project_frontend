@@ -2,6 +2,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
+    <router-link to="/login">Логин</router-link> |
     <router-link to="/registration">Регистрация</router-link> |
     <router-link to="/medspecializations">Специализация</router-link> |
     <router-link to="/persons">Пользователи</router-link> |
@@ -38,4 +39,4 @@ nav a.router-link-exact-active {
   color: #72c9a1;
 }
 </style>
-<script setup lang="ts"></script>
+<script lang="ts"></script>

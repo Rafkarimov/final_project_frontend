@@ -1,7 +1,10 @@
 <template>
   <h1 class="mb-5">Регистрация пациента</h1>
   <div class="container">
-    <div class="div-form">
+    <div class="alert alert-danger" role="alert" v-if="error">
+      Произошла ошибка!
+    </div>
+    <div v-if="!isLoading">
       <div class="row mb-3">
         <label for="loginInput" class="form-label col-sm-3 col-form-label"
           >Логин</label
@@ -16,22 +19,34 @@
             v-bind:class="{ 'is-invalid': saveFormErrors.loginError }"
           />
           <div class="invalid-feedback">Логин не может быть пустым!</div>
+          <div v-if="loginError" class="app-invalid-feedback">
+            Логин должен быть уникальным!
+          </div>
         </div>
       </div>
       <div class="row mb-3">
-        <label for="passwordInput" class="form-label col-sm-3 col-form-label"
-          >Пароль</label
-        >
-        <div class="col-sm-9">
-          <input
-            v-model="saveForm.person.password"
-            id="passwordInput"
-            type="password"
-            class="form-control"
-            aria-describedby="passwordHelp"
-            v-bind:class="{ 'is-invalid': saveFormErrors.passwordError }"
-          />
-          <div class="invalid-feedback">Пароль не может быть пустым!</div>
+        <div class="d-inline-flex">
+          <label class="form-label col-form-label col-sm-3">Пароль</label>
+          <div class="input-group">
+            <input
+              v-model="saveForm.person.password"
+              id="passwordInput"
+              :type="`${passwordType}`"
+              class="form-control"
+              aria-describedby="passwordHelp"
+              v-bind:class="{ 'is-invalid': saveFormErrors.passwordError }"
+            />
+            <div class="invalid-feedback">Пароль не может быть пустым!</div>
+            <button
+              class="btn open-password-btn"
+              type="button"
+              @click="openOrHidePassword"
+            >
+              <span class="btn-label" style="color: black"
+                ><font-awesome-icon icon="fa-solid fa-user-secret"
+              /></span>
+            </button>
+          </div>
         </div>
       </div>
       <div class="row mb-3">
@@ -118,7 +133,7 @@
           </VueDatePicker>
           <div
             v-if="saveFormErrors.birthDateError"
-            class="datepicker-invalid-feedback"
+            class="app-invalid-feedback"
           >
             Введите дату рождения!
           </div>
@@ -160,6 +175,12 @@
         Сохранить
       </button>
     </div>
+    <div class="spinner-div" v-if="isLoading">
+      <h3 class="mb-5">Ждите...</h3>
+      <div class="spinner-border text-primary">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -167,8 +188,10 @@
 import { defineComponent, reactive, ref } from "vue";
 import { formatDate, getMaxDate, getMinDate } from "@/utils/util";
 import { saveVisitor } from "@/api/http";
-import { Person } from "@/models/types";
+import { ErrorResponse, Person } from "@/models/types";
 import VueDatePicker from "@vuepic/vue-datepicker";
+import router from "@/router";
+import { AxiosError } from "axios";
 
 // компонент для списка врачей
 export default defineComponent({
@@ -203,13 +226,20 @@ export default defineComponent({
       snilsError: false,
     });
 
+    const error = ref(false); // описать
+    const isLoading = ref(false); // описать
+    const loginError = ref(false); // описать
+    const emailError = ref(false); // описать
+    const phoneError = ref(false); // описать
+    const passwordType = ref("password");
+
     const calendarDateInputOptions = ref({
       format: "dd.MM.yyyy",
     });
+
     const calendarDateFormat = (date: Date) => {
       if (date) {
         return date.toLocaleDateString("ru-RU", {
-          // you can use undefined as first argument
           year: "numeric",
           month: "2-digit",
           day: "2-digit",
@@ -217,8 +247,11 @@ export default defineComponent({
       }
       return null;
     };
-    const error = ref(false); // описать
-    const isLoading = ref(false); // описать
+
+    function openOrHidePassword() {
+      passwordType.value =
+        passwordType.value === "password" ? "text" : "password";
+    }
 
     const register = async () => {
       error.value = false;
@@ -231,12 +264,33 @@ export default defineComponent({
         }
         const visitor = await saveVisitor(saveForm as Person); // сохранение на сервер, используя HTTP API при помощи Axios
         console.log(visitor);
-      } catch {
-        error.value = true;
+        await router.push("/login");
+      } catch (err) {
+        if (instanceOfErrorResponse(err)) {
+          const response = err.response?.data as ErrorResponse;
+          const errorMessage = response.message;
+          setErrors(errorMessage);
+        } else {
+          error.value = true;
+        }
       } finally {
         isLoading.value = false;
       }
     };
+
+    function setErrors(errorMessage: string | undefined) {
+      if (errorMessage?.includes("LOGIN")) {
+        loginError.value = true;
+      } else if (errorMessage?.includes("EMAIL")) {
+        emailError.value = true;
+      } else if (errorMessage?.includes("PHONE")) {
+        phoneError.value = true;
+      }
+    }
+
+    function instanceOfErrorResponse(data: any): data is AxiosError {
+      return "response" in data;
+    }
 
     function validateForm() {
       const loginRegex = /^[a-zA-z0-9]{6,12}$/;
@@ -294,6 +348,9 @@ export default defineComponent({
 
     return {
       error,
+      loginError,
+      emailError,
+      phoneError,
       isLoading,
       register,
       formatDate,
@@ -301,6 +358,8 @@ export default defineComponent({
       saveFormErrors,
       calendarDateFormat,
       calendarDateInputOptions,
+      passwordType,
+      openOrHidePassword,
     };
   },
 });
@@ -408,47 +467,20 @@ export default defineComponent({
 // }
 </script>
 
-<style lang="scss">
-.container {
+<style lang="scss" scoped>
+.spinner-div {
+  margin-top: 200px;
 }
-.div-form {
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
+.spinner-border {
+  width: 5rem;
+  height: 5rem;
 }
-.col-form-label {
-  text-align: left;
+.input-group > .form-control,
+.input-group > .form-floating,
+.input-group > .form-select {
+  margin-left: 6px;
 }
-.invalid-feedback {
-  text-align: left;
-}
-.dp-custom-input {
-  box-shadow: none;
-  border-radius: 6px;
-}
-.dp__input_valid {
+.open-password-btn {
   border: 1px solid #ced4da;
-  &:focus {
-    border-color: #86b7fe;
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-  }
-  &:hover {
-    border-color: #ced4da;
-  }
-}
-.dp__input_invalid {
-  border: 1px solid #dc3545;
-  &:focus {
-    border-color: #dc3545;
-    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
-  }
-}
-.datepicker-invalid-feedback {
-  text-align: left;
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 0.875em;
-  color: #dc3545;
 }
 </style>

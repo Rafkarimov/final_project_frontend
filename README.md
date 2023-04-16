@@ -70,6 +70,10 @@ npm install bootstrap-icons
 npm install moment
 ```
 
+```
+npm run lint --fix
+```
+
 ### Useful links
 
 https://getbootstrap.com/docs/5.0/components/card/
@@ -77,3 +81,7 @@ https://getbootstrap.com/docs/5.0/components/card/
 https://vue3datepicker.com/ Vue3datepicker календарь
 
 https://www.regextester.com/ Тестер для регулярок
+
+https://fontawesome.com/docs/web/use-with/vue/ Иконки Font Awesome
+
+https://fontawesome.com/docs/web/use-with/vue/add-icons Иконки Font Awesome

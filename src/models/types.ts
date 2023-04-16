@@ -119,3 +119,8 @@ export interface ResearchStatus {
 export interface ResearchStatusState {
   researchstatuses?: Array<ResearchStatus>;
 }
+
+export interface ErrorResponse {
+  status?: number;
+  message?: string;
+}
