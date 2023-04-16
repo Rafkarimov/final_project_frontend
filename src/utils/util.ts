@@ -11,3 +11,15 @@ export function formatDateTime(value: Date) {
     return moment(String(value)).format("DD.MM.YYYY HH:mm:ss");
   }
 }
+
+export function getMaxDate() {
+  const today = new Date();
+  today.setFullYear(today.getFullYear() - 18);
+  return today;
+}
+
+export function getMinDate() {
+  const today = new Date();
+  today.setFullYear(today.getFullYear() - 120);
+  return today;
+}

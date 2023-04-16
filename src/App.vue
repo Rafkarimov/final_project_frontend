@@ -2,7 +2,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
+    <router-link to="/registration">Регистрация</router-link> |
     <router-link to="/medspecializations">Специализация</router-link> |
     <router-link to="/persons">Пользователи</router-link> |
     <router-link to="/doctors">Врачи</router-link> |

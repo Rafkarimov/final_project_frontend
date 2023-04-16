@@ -4,26 +4,25 @@
     <button class="btn btn-primary mb-5" @click="openModal">Create new</button>
     <ModalComponent v-model="modalProperties" title="Create doctor">
       <div class="myform">
-        <form>
+        <form @submit.prevent="handleSaveSubmit">
           <div class="mb-3 mt-4">
-            <label for="exampleInputEmail1" class="form-label"
-              >Email address</label
-            >
+            <label for="loginInput" class="form-label">Login</label>
             <input
-              type="email"
+              v-model="saveForm.person.email"
+              type="text"
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              id="loginInput"
+              aria-describedby="loginHelp"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Password</label
-            >
+          <div class="mb-3 mt-4">
+            <label for="passwordInput" class="form-label">Password</label>
             <input
-              type="password"
+              id="loginInput"
+              v-model="saveForm.person.email"
+              aria-describedby="loginHelp"
               class="form-control"
-              id="exampleInputPassword1"
+              type="text"
             />
           </div>
         </form>
@@ -85,7 +84,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, reactive, ref } from "vue";
 import { useDoctorStore } from "@/store/doctor";
 import { getDoctors } from "@/api/http";
 import { formatDate } from "@/utils/util";
@@ -98,12 +97,30 @@ export default defineComponent({
   name: "DoctorView",
   components: { ModalComponent },
   setup() {
+    const saveForm = reactive({
+      person: {
+        login: "",
+        password: "",
+        lastName: "",
+        firstName: "",
+        middleName: "",
+        birthDate: "",
+        phone: "",
+        email: "",
+        snils: "",
+      },
+      medSpecialization: "",
+    });
     const error = ref(false); // описать
     const isLoading = ref(false); // описать
     const doctorStore = useDoctorStore(); // описать
     let info: Popover | undefined = undefined;
 
     const modalProperties = ref({ isVisible: false, size: "modal-lg" });
+
+    const handleSaveSubmit = () => {
+      console.log("HELLO");
+    };
 
     function openModal() {
       modalProperties.value.isVisible = true;
@@ -162,6 +179,8 @@ export default defineComponent({
       openModal,
       closeModal,
       saveDoctor,
+      handleSaveSubmit,
+      saveForm,
     };
   },
 });

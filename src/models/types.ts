@@ -13,12 +13,12 @@ export interface Person {
   id?: number;
   login?: string;
   password?: string;
+  email?: Date;
   lastName?: string;
   firstName?: string;
   middleName?: string;
   birthDate?: Date;
   phone?: Date;
-  email?: Date;
   snils?: Date;
 }
 

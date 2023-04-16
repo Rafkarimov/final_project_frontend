@@ -70,3 +70,9 @@ export async function getReceptions(): Promise<Array<Reception>> {
   const { data } = await axios.get("/reception/get-all"); // Axios - это HTTP-клиент, основанный на Promise для Node.js и браузера.
   return data;
 }
+
+export async function saveVisitor(person: Person): Promise<Person> {
+  // Promise (промис) - это объект, представляющий результат успешного или неудачного завершения асинхронной операции
+  const { data } = await axios.post("/visitor/create", person); // Axios - это HTTP-клиент, основанный на Promise для Node.js и браузера.
+  return data;
+}
