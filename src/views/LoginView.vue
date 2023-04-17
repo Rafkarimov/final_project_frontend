@@ -44,7 +44,6 @@ import { formatDate } from "@/utils/util";
 
 // компонент для списка врачей
 export default defineComponent({
-  // ToDo переназвать все виды
   name: "LoginView",
   setup() {
     const saveForm = reactive({

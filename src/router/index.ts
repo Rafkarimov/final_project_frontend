@@ -11,13 +11,15 @@ const routes: Array<RouteRecordRaw> = [
     path: "/medspecializations",
     name: "MedSpecialization",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MedSpecialization.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/MedSpecializationView.vue"
+      ),
   },
   {
     path: "/persons",
     name: "Person",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Person.vue"),
+      import(/* webpackChunkName: "about" */ "../views/PersonView.vue"),
   },
   {
     path: "/doctors",
@@ -29,39 +31,43 @@ const routes: Array<RouteRecordRaw> = [
     path: "/chiefdoctors",
     name: "ChiefDoctor",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ChiefDoctor.vue"),
+      import(/* webpackChunkName: "about" */ "../views/ChiefDoctorView.vue"),
   },
   {
     path: "/visitors",
     name: "Visitor",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Visitor.vue"),
+      import(/* webpackChunkName: "about" */ "../views/VisitorView.vue"),
   },
   {
     path: "/medtypesofresearch",
     name: "MedTypesOfResearch",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MedTypesOfResearch.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/MedTypesOfResearchView.vue"
+      ),
   },
   {
     path: "/laboratoryassistant",
     name: "LaboratoryAssistant",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/LaboratoryAssistant.vue"
+        /* webpackChunkName: "about" */ "../views/LaboratoryAssistantView.vue"
       ),
   },
   {
     path: "/visitorresearch",
     name: "VisitorResearch",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/VisitorResearch.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/VisitorResearchView.vue"
+      ),
   },
   {
     path: "/reception",
     name: "Reception",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Reception.vue"),
+      import(/* webpackChunkName: "about" */ "../views/ReceptionView.vue"),
   },
   {
     path: "/registration",

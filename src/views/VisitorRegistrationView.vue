@@ -18,9 +18,12 @@
             aria-describedby="loginHelp"
             v-bind:class="{ 'is-invalid': saveFormErrors.loginError }"
           />
-          <div class="invalid-feedback">Логин не может быть пустым!</div>
+          <div class="invalid-feedback">
+            Требования к полю Логин: может содержать буквы латиницы и цифры, не
+            цифры, не должно быть пустым. Пример: Ivan2023
+          </div>
           <div v-if="loginError" class="app-invalid-feedback">
-            Логин должен быть уникальным!
+            Логин уже используется!
           </div>
         </div>
       </div>
@@ -36,7 +39,12 @@
               aria-describedby="passwordHelp"
               v-bind:class="{ 'is-invalid': saveFormErrors.passwordError }"
             />
-            <div class="invalid-feedback">Пароль не может быть пустым!</div>
+            <div class="invalid-feedback">
+              Требования к полю Пароль: должно содержать минимум 12 символов,
+              одну заглавную и одну строчную буквы латиницы, одну цифру, один
+              специальный символ @#$%^&+=_ Поле не может быть пустым. Пример:
+              Primer2023*-
+            </div>
             <button
               class="btn open-password-btn"
               type="button"
@@ -62,7 +70,11 @@
             aria-describedby="emailHelp"
             v-bind:class="{ 'is-invalid': saveFormErrors.emailError }"
           />
-          <div class="invalid-feedback">Е-мейл не может быть пустым!</div>
+          <div class="invalid-feedback">
+            Требования к полю Е-майл: может содержать буквы латиницы и цифры в
+            цифры в формате @priver.ru, не может быть пустым. Пример:
+            Ivan2023@primer.ru
+          </div>
         </div>
       </div>
       <div class="row mb-3">
@@ -78,7 +90,10 @@
             aria-describedby="lastNameHelp"
             v-bind:class="{ 'is-invalid': saveFormErrors.lastNameError }"
           />
-          <div class="invalid-feedback">Фамилия не может быть пустым!</div>
+          <div class="invalid-feedback">
+            Требования к полю Фамилия: заполняется только кириллицей, не может
+            быть пустым!
+          </div>
         </div>
       </div>
       <div class="row mb-3">
@@ -94,7 +109,10 @@
             aria-describedby="firstNameHelp"
             v-bind:class="{ 'is-invalid': saveFormErrors.firstNameError }"
           />
-          <div class="invalid-feedback">Имя не может быть пустым!</div>
+          <div class="invalid-feedback">
+            Требования к полю Имя: заполняется только кириллицей, не может быть
+            быть пустым!
+          </div>
         </div>
       </div>
       <div class="row mb-3">
@@ -110,7 +128,10 @@
             aria-describedby="middleNameHelp"
             v-bind:class="{ 'is-invalid': saveFormErrors.middleNameError }"
           />
-          <div class="invalid-feedback">Отчество не может быть пустым!</div>
+          <div class="invalid-feedback">
+            Требования к полю Отчество: заполняется только кириллицей, не может
+            быть пустым!
+          </div>
         </div>
       </div>
       <div class="row mb-3">
@@ -135,7 +156,8 @@
             v-if="saveFormErrors.birthDateError"
             class="app-invalid-feedback"
           >
-            Введите дату рождения!
+            Требования к полю Дата рождения: воспользуйтесь календарем для для
+            для ввода. Поле не может быть пустым!
           </div>
         </div>
       </div>
@@ -152,7 +174,10 @@
             aria-describedby="phoneHelp"
             v-bind:class="{ 'is-invalid': saveFormErrors.phoneError }"
           />
-          <div class="invalid-feedback">Телефон не может быть пустым!</div>
+          <div class="invalid-feedback">
+            Требования к полю Телефон: номер должен начинаться с +7 и 10 цифр,
+            цифр, не может быть пустым. Пример +71234512345!
+          </div>
         </div>
       </div>
       <div class="row mb-3">
@@ -168,7 +193,10 @@
             aria-describedby="snilsHelp"
             v-bind:class="{ 'is-invalid': saveFormErrors.snilsError }"
           />
-          <div class="invalid-feedback">СНИЛС не может быть пустым!</div>
+          <div class="invalid-feedback">
+            Требования к полю СНИЛС: поле должно содержать только 10 цифр цифр
+            цифр цифр пробелов и тире. Поле не может быть пустым!
+          </div>
         </div>
       </div>
       <button class="btn btn-primary mb-5 float-end" @click="register">
@@ -195,7 +223,6 @@ import { AxiosError } from "axios";
 
 // компонент для списка врачей
 export default defineComponent({
-  // ToDo переназвать все виды
   name: "RegistrationView",
   methods: { getMinDate, getMaxDate },
   components: { VueDatePicker },
